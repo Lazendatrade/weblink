@@ -2,28 +2,27 @@
 <html lang="en">
 <head>
   <head>
-        <meta charset="utf-8">
-      <title>Singpass App</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
+      <meta charset="utf-8">
+  <title>Singpass</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-        <!-- Favicons -->
-        <link href="img/fevi.png" rel="icon">
+  <!-- Disable scaling to fix zooming issues -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Singpass">
+  <meta name="mobile-web-app-capable" content="yes">
 
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300|Nunito:400,700&display=swap" rel="stylesheet">
+  <!-- iPhone splash icon -->
+  <link rel="apple-touch-icon" href="img/fevi.png">
+  <link rel="icon" href="img/fevi.png" type="image/png" />
 
-        <!-- Bootstrap CSS File -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Vendor CSS Files -->
-        <link href="vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
-        <link href="vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="vendor/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-        <!-- Main Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
+  <!-- Font & CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300|Nunito:400,700&display=swap" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="vendor/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="vendor/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
    
 
   
@@ -48,6 +47,13 @@
     width: 100%;
     height: auto;
   }
+  html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
 
 
 
@@ -146,7 +152,16 @@
       display: block;
       margin-top: -5px;
       color: #555;
+  /*    justify-content: space-between;
+  flex-wrap: wrap;*/
     }
+/*    .details p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: #555;
+}*/
 
     .label {
       font-weight: normal;
@@ -159,6 +174,7 @@
       flex-grow: 1;
       text-align: right;
       color: black;
+      min-width: 150px;
       font-weight: 200;
     }
 
@@ -170,18 +186,41 @@
       margin-left: 5px;
       color: #444;
     }
+/*    .toggle-details {
+  position: absolute;
+  bottom: 20px;
+  left: 20px; /* left side per fix kia gaya */
+  
+ /* padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: white;
+  transition: background-color 0.3s ease;*//*
+}*/
 
     .toggle-details {
-      position: absolute;
+
+      display: block;
+  color: black;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  margin-top: 20px;
+  padding-bottom: 15px;
+    /*  position: absolute;
      /* position: relative;*/
-      left: 0;
+    /*  left: 0;
       bottom: 0;
       color: black;
       cursor: pointer;
       font-size: 14px;
       padding-left: 30px;
-      margin-top: 20px;
+      margin-top: 20px;*/
     }
+  
 
     .footer {
       padding: 12px 16px;
@@ -229,40 +268,47 @@
         <div class="id-body">
           <img src="img/profile2.png" class="id-photo" />
           <div class="id-photo23">
-  <svg width="80" height="60" viewBox="0 0 300 200">
-    <defs>
-      <clipPath id="ellipseClip">
-        <ellipse cx="150" cy="100" rx="100" ry="70" />
-      </clipPath>
-      <linearGradient id="flowGradient" x1="0" y1="0" x2="700" y2="0" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="green" stop-opacity="0.3" />
-        <stop offset="14%" stop-color="purple" stop-opacity="0.3" />
-        <stop offset="28%" stop-color="blue" stop-opacity="0.3" />
-        <stop offset="42%" stop-color="yellow" stop-opacity="0.3" />
-        <stop offset="56%" stop-color="red" stop-opacity="0.3" />
-        <stop offset="70%" stop-color="orange" stop-opacity="0.3" />
-        <stop offset="84%" stop-color="cyan" stop-opacity="0.3" />
-        <stop offset="100%" stop-color="green" stop-opacity="0.3" />
-      </linearGradient>
-    </defs>
+ <svg width="80" height="60" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Clipping Path -->
+    <clipPath id="ellipseClip">
+      <ellipse cx="150" cy="100" rx="100" ry="70" />
+    </clipPath>
 
-    <g clip-path="url(#ellipseClip)">
-      <image href="img/lions.png"
-             x="60" y="40" width="180" height="120"
-             preserveAspectRatio="xMidYMid meet" />
-      <g>
-        <rect x="0" y="0" width="700" height="200" fill="url(#flowGradient)">
-          <animateTransform attributeName="transform"
-                            type="translate"
-                            from="0,0" to="-350,0"
-                            dur="0.8s"
-                            repeatCount="indefinite" />
-        </rect>
-      </g>
-    </g>
-    <ellipse cx="150" cy="100" rx="100" ry="70"
-             fill="none" stroke="white" stroke-opacity="0.1" />
-  </svg>
+    <!-- Lighter purple and dominant pink/cyan -->
+    <linearGradient id="flowGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff00cc" stop-opacity="0.6" />
+      <stop offset="25%" stop-color="#6600ff" stop-opacity="0.3" /> <!-- Less intense purple -->
+      <stop offset="60%" stop-color="#00ffff" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#ff00cc" stop-opacity="0.6" />
+    </linearGradient>
+
+    <!-- Pattern for animation -->
+    <pattern id="animatedGradient" patternUnits="userSpaceOnUse" width="600" height="200">
+      <rect x="0" y="0" width="600" height="200" fill="url(#flowGradient)">
+        <animateTransform attributeName="transform"
+                          type="translate"
+                          from="0,0" to="-300,0"
+                          dur="3s"
+                          repeatCount="indefinite" />
+      </rect>
+    </pattern>
+  </defs>
+
+  <!-- Content inside ellipse -->
+  <g clip-path="url(#ellipseClip)">
+    <!-- Lion Image -->
+    <image href="img/lions.png" x="60" y="40" width="180" height="120" preserveAspectRatio="xMidYMid meet" />
+
+    <!-- Moving gradient overlay -->
+    <rect x="0" y="0" width="300" height="200" fill="url(#animatedGradient)" />
+  </g>
+
+  <!-- Soft outline of ellipse -->
+  <ellipse cx="150" cy="100" rx="100" ry="70" fill="none" stroke="white" stroke-opacity="0.1" />
+</svg>
+
+
 </div>
 
          <!--  <img src="img/lion.png" class="id-photo23" />  -->
@@ -290,11 +336,15 @@
             <p>
               <span class="label">Address:<br></span> 
               <span class="value" id="address-value">••••••••••</span>
-              <button class="eye-btn" onclick="toggleField('address')"><img src="img/eye-icon.png" alt="Show" class="eye-icon" /></button><br>
+              <button class="eye-btn" onclick="toggleField('address')">
+                <img src="img/eye-icon.png" alt="Show" class="eye-icon" /></button><br>
             </p>
-          </div>
+
+             <div class="toggle-details">^ Hide details</div>
+
+          </div> 
           <br><br>
-          <div class="toggle-details">^ Hide details</div>
+          
         </div>
       </div>
     </div>
@@ -315,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // بٹن ٹیکسٹ درست کریں
 
-  toggleBtn.textContent = 'Show details';
+  toggleBtn.textContent = 'v Show details';
 
 
   // بٹن پر کلک ایونٹ لگائیں
@@ -346,7 +396,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function toggleField(field) {
       const valueEl = document.getElementById(`${field}-value`);
       visibleState[field] = !visibleState[field];
-      valueEl.textContent = visibleState[field] ? originalData[field] : maskedData[field];
+     /* valueEl.textContent = visibleState[field] ? originalData[field] : maskedData[field];*/
+      valueEl.innerHTML = visibleState[field]
+  ? originalData[field].replace(/\n/g, '<br>').replace(/SINGAPORE 437186/, 'SINGAPORE 437186')
+  : maskedData[field];
+
 
   // toggle icon image
   const button = valueEl.nextElementSibling;
