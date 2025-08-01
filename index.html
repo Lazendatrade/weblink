@@ -60,8 +60,8 @@
     .card {
       background: #fce4ec;
       border-radius: 12px;
-      overflow: hidden;
 
+      overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.4);
       color: #000;
     }
@@ -77,7 +77,7 @@
   align-items: end;         /* ✅ Align to bottom if needed */
   height: 100px;            /* ✅ Optional fixed height if you want tight layout */
   padding-bottom: 0px;
-  margin-bottom: 5px;
+  margin-bottom: 12px;
 }
 
 .barcode-card img {
@@ -112,6 +112,7 @@
      /* padding-left: 5px;
       padding-right: 20px;*/
       background-size: cover;
+
       border-radius: 12px;
     }
 
@@ -172,12 +173,14 @@
     .details {
       margin-top: 12px;
       font-size: 14px;
-      max-height: 340px; 
-   
+      /*max-height: 360px; */
+      overflow: hidden;
+   /*height: 360px;*/
       transition: all 0.3s ease-in-out;
     }
 
     .details p {
+
       display: block;
       margin-top: -5px;
       color: #555;
@@ -230,13 +233,14 @@
   transition: background-color 0.3s ease;*//*
 }*/
 
-    .toggle-details {
+   /* .toggle-details {
 
       display: block;
   color: black;
   cursor: pointer;
   font-size: 14px;
   text-align: left;
+  padding-left: 15px;
   margin-top: 25px;
   padding-bottom: 15px;
     /*  position: absolute;
@@ -248,8 +252,25 @@
       font-size: 14px;
       padding-left: 30px;
       margin-top: 20px;*/
-    }
-  
+  /*  }*/
+  .toggle-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: black;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  padding-left: 15px;
+  margin-top: 25px;
+  padding-bottom: 15px;
+}
+
+.toggle-details img {
+  width: 16px;
+  height: 16px;
+}
+
 
     .footer {
       padding: 12px 16px;
@@ -312,32 +333,37 @@
         <div class="id-body">
           <img src="img/profile2.png" class="id-photo" />
           <div class="id-photo23">
- <svg width="80" height="60" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+<svg width="80" height="60" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <!-- Clipping Path -->
     <clipPath id="ellipseClip">
       <ellipse cx="150" cy="100" rx="100" ry="70" />
     </clipPath>
 
-    <!-- Lighter purple and dominant pink/cyan -->
-    <linearGradient id="flowGradient" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ff00cc" stop-opacity="0.7" />
-      <stop offset="25%" stop-color="#6600ff" stop-opacity="0.3" /> <!-- Less intense purple -->
-      <stop offset="60%" stop-color="#00ffff" stop-opacity="0.7" />
-      <stop offset="100%" stop-color="#ff00cc" stop-opacity="0.7" />
-      <stop offset="0%" stop-color="#ff00cc" stop-opacity="0.7" />
-      <stop offset="25%" stop-color="#6600ff" stop-opacity="0.3" /> <!-- Less intense purple -->
-      <stop offset="60%" stop-color="#00ffff" stop-opacity="0.7" />
-      <stop offset="100%" stop-color="#ff00cc" stop-opacity="0.7" />
+    <!-- Softer Holographic Gradient -->
+    <linearGradient id="holoGradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff3399" />   <!-- Soft Pink -->
+      <stop offset="20%" stop-color="#00bfff" />  <!-- Lighter Cyan -->
+      <stop offset="40%" stop-color="#d1c000" />  <!-- Softer Yellow-Green -->
+      <stop offset="60%" stop-color="#3ed3b3" />  <!-- Mint -->
+      <stop offset="80%" stop-color="#d600a0" />  <!-- Magenta -->
+      <stop offset="100%" stop-color="#ff3399" />
     </linearGradient>
 
-    <!-- Pattern for animation -->
+    <!-- Infinite Animation (Slightly Faster, Softer) -->
     <pattern id="animatedGradient" patternUnits="userSpaceOnUse" width="600" height="200">
-      <rect x="0" y="0" width="600" height="200" fill="url(#flowGradient)">
+      <rect x="0" y="0" width="600" height="200" fill="url(#holoGradient)" opacity="0.6">
         <animateTransform attributeName="transform"
                           type="translate"
-                          from="0,0" to="-300,0"
-                          dur="3s"
+                          from="0,0" to="-600,0"
+                          dur="4s"
+                          repeatCount="indefinite" />
+      </rect>
+      <rect x="600" y="0" width="600" height="200" fill="url(#holoGradient)" opacity="0.6">
+        <animateTransform attributeName="transform"
+                          type="translate"
+                          from="0,0" to="-600,0"
+                          dur="4s"
                           repeatCount="indefinite" />
       </rect>
     </pattern>
@@ -347,14 +373,20 @@
   <g clip-path="url(#ellipseClip)">
     <!-- Lion Image -->
     <image href="img/lions.png" x="60" y="40" width="180" height="120" preserveAspectRatio="xMidYMid meet" />
-
-    <!-- Moving gradient overlay -->
+    
+    <!-- Animated softer overlay -->
     <rect x="0" y="0" width="300" height="200" fill="url(#animatedGradient)" />
   </g>
 
-  <!-- Soft outline of ellipse -->
+  <!-- Outline -->
   <ellipse cx="150" cy="100" rx="100" ry="70" fill="none" stroke="white" stroke-opacity="0.1" />
 </svg>
+
+
+
+
+
+
 
 
 </div>
@@ -383,18 +415,19 @@
 
             <p>
               <span class="label">Address:<br></span> 
-              <span class="value" id="address-value">••••••••••</span>
+              <span class="value" id="address-value">•••••••••••</span>
               <button class="eye-btn" onclick="toggleField('address')">
                 <img src="img/eye-icon.png" alt="Show" class="eye-icon" /></button><br>
             </p>
 
-             <div class="toggle-details">^ Hide details</div>
-
-
           </div> 
-          <br><br>
-          
+          <br>
+     
         </div>
+             <div class="toggle-details">
+  <img src="img/show-icon.png" alt="Toggle Icon" id="toggle-icon">
+  <span id="toggle-text">Show details</span>
+</div>
       </div>
     </div>
     <div class="footer">
@@ -416,7 +449,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // بٹن ٹیکسٹ درست کریں
 
-  toggleBtn.textContent = 'v Show details';
+  toggleBtn.textContent = 'Show details';
+ toggleBtn.innerHTML = `<img src="img/show-icon.png" alt="Show" > Show details`;
 
 
   // بٹن پر کلک ایونٹ لگائیں
@@ -464,19 +498,50 @@ document.addEventListener('DOMContentLoaded', () => {
       button.textContent = visibleState[field] ? '🙈' : '👁️';*/
     }
 
+function toggleDetails() {
+  const card = document.querySelector('.card-container');
+  const toggleBtn = document.querySelector('.toggle-details');
+  const icon = toggleBtn.querySelector('img');
+
+  if (card.classList.contains('hidden-details')) {
+    card.classList.remove('hidden-details');
+    toggleBtn.innerHTML = `<img src="img/hiden-icon.png" alt="Hide" > Hide details`;
+  } else {
+    card.classList.add('hidden-details');
+    toggleBtn.innerHTML = `<img src="img/show-icon.png" alt="Show" > Show details`;
+  }
+}
 
 
-    function toggleDetails() {
+ /*   function toggleDetails() {
       const card = document.querySelector('.card-container');
       const toggleBtn = document.querySelector('.toggle-details');
       if (card.classList.contains('hidden-details')) {
         card.classList.remove('hidden-details');
-        toggleBtn.textContent = '^ Hide details';
+        toggleBtn.textContent = 'Hide details';
       } else {
         card.classList.add('hidden-details');
         toggleBtn.textContent = 'Show details';
       }
-    }
+    }*/
+/*function toggleDetails() {
+  const card = document.querySelector('.card-container');
+  const toggleBtn = document.querySelector('.toggle-details');
+  const toggleIcon = document.getElementById('toggle-icon');
+  const toggleText = document.getElementById('toggle-text');
+
+  if (card.classList.contains('hidden-details')) {
+    card.classList.remove('hidden-details');
+    toggleText.textContent = 'Hide details';
+    toggleIcon.src = 'img/hiden-icon.png';
+    toggleIcon.alt = 'Hide icon';
+  } else {
+    card.classList.add('hidden-details');
+    toggleText.textContent = 'Show details';
+    toggleIcon.src = 'img/show-icon.png';
+    toggleIcon.alt = 'Show icon';
+  }
+}*/
 
     document.querySelector('.toggle-details').addEventListener('click', toggleDetails);
   </script>
