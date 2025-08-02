@@ -340,46 +340,77 @@
       <ellipse cx="150" cy="100" rx="100" ry="70" />
     </clipPath>
 
-    <!-- Softer Holographic Gradient -->
+    <!-- Gradient Mask for Fading Edges -->
+    <linearGradient id="fadeMask" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="white" stop-opacity="0" />
+      <stop offset="10%" stop-color="white" stop-opacity="1" />
+      <stop offset="90%" stop-color="white" stop-opacity="1" />
+      <stop offset="100%" stop-color="white" stop-opacity="0" />
+    </linearGradient>
+
+    <mask id="edgeFadeMask">
+      <rect width="600" height="200" fill="url(#fadeMask)" />
+    </mask>
+
+    <!-- Blur Filter for Gradient -->
+    <filter id="gradientBlur" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="8" />
+    </filter>
+
+    <!-- Color Gradient -->
     <linearGradient id="holoGradient" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ff3399" />   <!-- Soft Pink -->
-      <stop offset="20%" stop-color="#00bfff" />  <!-- Lighter Cyan -->
-      <stop offset="40%" stop-color="#d1c000" />  <!-- Softer Yellow-Green -->
-      <stop offset="60%" stop-color="#3ed3b3" />  <!-- Mint -->
-      <stop offset="80%" stop-color="#d600a0" />  <!-- Magenta -->
+      <stop offset="0%" stop-color="#00bfff" />
+      <stop offset="20%" stop-color="#3ed3b3" />
+      <stop offset="40%" stop-color="#ff3399" />
+      <stop offset="60%" stop-color="#3ed3b3" />
+      <stop offset="80%" stop-color="#00bfff" />
       <stop offset="100%" stop-color="#ff3399" />
     </linearGradient>
 
-    <!-- Infinite Animation (Slightly Faster, Softer) -->
+    <!-- Animated Pattern with Blur and Mask -->
     <pattern id="animatedGradient" patternUnits="userSpaceOnUse" width="600" height="200">
-      <rect x="0" y="0" width="600" height="200" fill="url(#holoGradient)" opacity="0.6">
-        <animateTransform attributeName="transform"
-                          type="translate"
-                          from="0,0" to="-600,0"
-                          dur="4s"
-                          repeatCount="indefinite" />
-      </rect>
-      <rect x="600" y="0" width="600" height="200" fill="url(#holoGradient)" opacity="0.6">
-        <animateTransform attributeName="transform"
-                          type="translate"
-                          from="0,0" to="-600,0"
-                          dur="4s"
-                          repeatCount="indefinite" />
-      </rect>
+      <g mask="url(#edgeFadeMask)" filter="url(#gradientBlur)">
+        <!-- First moving block -->
+        <rect width="600" height="200" fill="url(#holoGradient)" opacity="0.7">
+          <animateTransform attributeName="transform"
+                            type="translate"
+                            from="0,0" to="-600,0"
+                            dur="6s"
+                            repeatCount="indefinite" />
+        </rect>
+        <!-- Second block for seamless loop -->
+        <rect x="600" y="0" width="600" height="200" fill="url(#holoGradient)" opacity="0.7">
+          <animateTransform attributeName="transform"
+                            type="translate"
+                            from="0,0" to="-600,0"
+                            dur="6s"
+                            repeatCount="indefinite" />
+        </rect>
+      </g>
     </pattern>
+
+    <!-- Optional: Soft border -->
+    <filter id="softBlur" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+    </filter>
   </defs>
 
-  <!-- Content inside ellipse -->
+  <!-- Main content with clipping -->
   <g clip-path="url(#ellipseClip)">
-    <!-- Lion Image -->
+    <!-- Background image -->
     <image href="img/lions.png" x="60" y="40" width="180" height="120" preserveAspectRatio="xMidYMid meet" />
     
-    <!-- Animated softer overlay -->
-    <rect x="0" y="0" width="300" height="200" fill="url(#animatedGradient)" />
+    <!-- Animated overlay with blurred gradient -->
+    <rect width="300" height="200" fill="url(#animatedGradient)" />
   </g>
 
-  <!-- Outline -->
-  <ellipse cx="150" cy="100" rx="100" ry="70" fill="none" stroke="white" stroke-opacity="0.1" />
+  <!-- Ellipse outline -->
+  <ellipse cx="150" cy="100" rx="100" ry="70"
+           fill="none"
+           stroke="white"
+           stroke-opacity="0.2"
+           stroke-width="2"
+           filter="url(#softBlur)" />
 </svg>
 
 
@@ -547,3 +578,4 @@ function toggleDetails() {
   </script>
 </body>
 </html>
+
